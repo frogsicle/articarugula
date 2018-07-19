@@ -9,6 +9,25 @@ x_numpy = np.array([[0., 1.],
 y_numpy = np.array([[0.], [0.], [0.], [1.]])
 print(x_numpy.shape)
 
+
+## super basic for sake of understanding
+#x_data = tf.placeholder(dtype=tf.float32, shape=[None,6])
+#y_data = tf.placeholder(dtype=tf.float32, shape=[None,1], name='meh')
+#
+#
+#x_bias = tf.Variable(tf.random_normal([5]), trainable=True)
+#weights_01 = tf.Variable(tf.random_normal([6,5]), trainable=True)
+#
+#hidden = tf.nn.xw_plus_b(x_data, weights_01, x_bias)
+#hidden_nonlin = tf.maximum(0., hidden)
+#
+#hidden_bias = tf.Variable(tf.random_normal([1]), trainable=True)
+#weights_02 = tf.Variable(tf.random_normal([5, 1]), trainable=True)
+#
+#pre_predictions = tf.nn.xw_plus_b(hidden_nonlin, weights_02, hidden_bias)
+#pre_predictions = tf.reshape(pre_predictions, [1,1])
+#predictions = tf.sigmoid(pre_predictions)
+
 # we're building a graph
 #x_input = tf.Variable([0., 1., 2.])
 x_input = tf.placeholder(dtype=tf.float32, shape=[None, 2])
@@ -53,9 +72,9 @@ with tf.Session() as sess:
                   [1, 1]]})
 
     print('a prediction:', pred)
-
+    print(tf.trainable_variables())
     some_weights = tf.get_default_graph(
-    ).get_tensor_by_name('find_me/kernel:0')
+    ).get_tensor_by_name('dense/kernel:0')
     number_weights = sess.run(some_weights)
 
 x = tf.trainable_variables()
